@@ -1,5 +1,7 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 
+// Precisamos de um contexto para que os componentes possam compartilhar
+// o estado (imagem atual do Weber) e a capacidade de mudá-lo
 const SpecimenContext = createContext();
 
 // Custom Hook: contém a lógica de botão com cooldown
@@ -26,7 +28,7 @@ function useCooldown(totalSeconds = 10) {
   return { secondsLeft, startCooldown: () => setSecondsLeft(totalSeconds) };
 }
 
-// Botão para reenviar SMS
+// Botão para fazer carinho no Weber
 function PetButton() {
   const { currentImage, changeImageTemporarily } = useContext(SpecimenContext);
   const { secondsLeft, startCooldown } = useCooldown(5);
@@ -43,7 +45,7 @@ function PetButton() {
   );
 }
 
-// Botão para reenviar E-mail
+// Botão para alimentar o Weber
 function FeedButton() {
   // Se não tivéssemos feito o Custom Hook, teriamos que escrever a mesma lógica de novo
   // Mas fica muito mais simples separar a lógica em um hook e usar ele várias vezes
@@ -76,6 +78,8 @@ function SpecimenImage() {
 
 export default function App() {
   const [currentImage, setCurrentImage] = useState('images/weber_idle.gif');
+  // Como contexto, em vez de passar a função de mudar a imagem diretamente,
+  // passamos uma função que muda a imagem temporariamente, e depois volta para a imagem anterior
   const changeImageTemporarily = (newImage, oldImage = currentImage, duration = 2000) => {
     setCurrentImage(newImage);
     setTimeout(() => {
