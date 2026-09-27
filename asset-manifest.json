@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/weber/static/css/main.e6c13ad2.css",
+    "main.js": "/weber/static/js/main.2145a14d.js",
+    "static/js/453.35732811.chunk.js": "/weber/static/js/453.35732811.chunk.js",
+    "index.html": "/weber/index.html",
+    "main.e6c13ad2.css.map": "/weber/static/css/main.e6c13ad2.css.map",
+    "main.2145a14d.js.map": "/weber/static/js/main.2145a14d.js.map",
+    "453.35732811.chunk.js.map": "/weber/static/js/453.35732811.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.2145a14d.js"
+  ]
+}
