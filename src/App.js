@@ -32,7 +32,7 @@ function PetButton() {
   const { secondsLeft, startCooldown } = useCooldown(5);
 
   const handleClick = () => {
-    changeImageTemporarily('/images/weber_pet.gif', 'images/weber_idle.gif');
+    changeImageTemporarily('images/weber_pet.gif', 'images/weber_idle.gif');
     startCooldown();
   }
 
@@ -51,7 +51,7 @@ function FeedButton() {
 
   const { currentImage, changeImageTemporarily } = useContext(SpecimenContext);
   const handleClick = () => {
-    changeImageTemporarily('/images/weber_eat.gif', 'images/weber_idle.gif', 1500);
+    changeImageTemporarily('images/weber_eat.gif', 'images/weber_idle.gif', 1500);
     startCooldown();
   }
 
