@@ -1,6 +1,11 @@
 import './App.css';
 import { useState, useEffect, createContext, useContext } from 'react';
 
+// Função do React que resolve o caminho da imagem no localhost e no github
+const getPath = (caminhoDaImagem) => {
+  return `${process.env.PUBLIC_URL}/${caminhoDaImagem}`;
+};
+
 // Precisamos de um contexto para que os componentes possam compartilhar
 // o estado (imagem atual do Weber) e a capacidade de mudá-lo
 const SpecimenContext = createContext();
@@ -35,7 +40,10 @@ function PetButton() {
   const { secondsLeft, startCooldown } = useCooldown(5);
 
   const handleClick = () => {
-    changeImageTemporarily('images/weber_pet.gif', 'images/weber_idle.gif');
+    changeImageTemporarily(
+      getPath('images/weber_pet.gif'),
+      getPath('images/weber_idle.gif')
+    );
     startCooldown();
   }
 
@@ -51,10 +59,14 @@ function FeedButton() {
   // Se não tivéssemos feito o Custom Hook, teriamos que escrever a mesma lógica de novo
   // Mas fica muito mais simples separar a lógica em um hook e usar ele várias vezes
   const { secondsLeft, startCooldown } = useCooldown(10);
-
   const { currentImage, changeImageTemporarily } = useContext(SpecimenContext);
+  
   const handleClick = () => {
-    changeImageTemporarily('images/weber_eat.gif', 'images/weber_idle.gif', 1500);
+    changeImageTemporarily(
+      getPath('images/weber_eat.gif'),
+      getPath('images/weber_idle.gif'),
+      1500
+    );
     startCooldown();
   }
 
@@ -78,7 +90,7 @@ function SpecimenImage() {
 }
 
 export default function App() {
-  const [currentImage, setCurrentImage] = useState('images/weber_idle.gif');
+  const [currentImage, setCurrentImage] = useState(getPath('images/weber_idle.gif'));
   // Como contexto, em vez de passar a função de mudar a imagem diretamente,
   // passamos uma função que muda a imagem temporariamente, e depois volta para a imagem anterior
   const changeImageTemporarily = (newImage, oldImage = currentImage, duration = 2000) => {
