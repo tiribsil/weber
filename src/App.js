@@ -1,3 +1,4 @@
+import './App.css';
 import { useState, useEffect, createContext, useContext } from 'react';
 
 // Precisamos de um contexto para que os componentes possam compartilhar
@@ -39,7 +40,7 @@ function PetButton() {
   }
 
   return (
-    <button onClick={handleClick} disabled={secondsLeft}>
+    <button className="cute-btn" onClick={handleClick} disabled={secondsLeft}>
       {secondsLeft ? `Aguarde ${secondsLeft}s para fazer mais carinho` : 'Fazer carinho'}
     </button>
   );
@@ -58,7 +59,7 @@ function FeedButton() {
   }
 
   return (
-    <button onClick={handleClick} disabled={secondsLeft}>
+    <button className="cute-btn" onClick={handleClick} disabled={secondsLeft}>
       {secondsLeft ? `Aguarde ${secondsLeft}s para dar mais comida` : 'Dar comida'}
     </button>
   );
@@ -70,8 +71,8 @@ function SpecimenImage() {
   return (
     <img
       src={currentImage}
-      alt=""
-      style={{ width: '200px', height: '200px', objectFit: 'cover' }}
+      alt="weber"
+      style={{ width: '200px', height: '200px', objectFit: 'contain', borderRadius: '15px' }}
     />
   );
 }
@@ -89,12 +90,21 @@ export default function App() {
 
   return (
     <SpecimenContext.Provider value={{ currentImage, changeImageTemporarily }}>
-      <div style={{ display: 'flex', gap: '20px', padding: '20px' }}>
-        <SpecimenImage />
-      </div>
-      <div style={{ display: 'flex', gap: '10px', padding: '20px' }}>
-        <PetButton />
-        <FeedButton />
+      <div className="app-container">
+        
+        <header className="cute-header">
+          <h1>Weber</h1>
+        </header>
+
+        <div className="pet-card">
+          <SpecimenImage />
+        </div>
+        
+        <div className="button-container">
+          <PetButton />
+          <FeedButton />
+        </div>
+
       </div>
     </SpecimenContext.Provider>
   );
